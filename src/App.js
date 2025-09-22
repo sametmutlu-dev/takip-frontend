@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { Box, Typography, Container, Alert } from '@mui/material';
+import { Box } from '@mui/material';
 
 // Components
 import Navbar from './components/Navbar';
 import SalesList from './pages/SalesList';
 import SalesForm from './pages/SalesForm';
 import Dashboard from './pages/Dashboard';
-
-// Utils
-import { checkIPAccess } from './utils/ipCheck';
 
 // Theme - Temel yapı aynı kalacak
 const theme = createTheme({
@@ -103,46 +100,6 @@ const theme = createTheme({
 
 
 function App() {
-  const [ipAccess, setIpAccess] = useState({ allowed: null, loading: true });
-
-  useEffect(() => {
-    const checkAccess = async () => {
-      const result = await checkIPAccess();
-      setIpAccess(result);
-    };
-    
-    checkAccess();
-  }, []);
-
-  // IP kontrolü yükleniyor
-  if (ipAccess.loading) {
-    return (
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Container maxWidth="sm" sx={{ mt: 8, textAlign: 'center' }}>
-          <Typography variant="h6">Erişim kontrol ediliyor...</Typography>
-        </Container>
-      </ThemeProvider>
-    );
-  }
-
-  // IP erişimi reddedildi
-  if (!ipAccess.allowed) {
-    return (
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Container maxWidth="sm" sx={{ mt: 8 }}>
-          <Alert severity="error" sx={{ mb: 2 }}>
-            <Typography variant="h6">Erişim Engellendi</Typography>
-            <Typography variant="body2">
-              IP adresiniz ({ipAccess.ip}) bu sisteme erişim için yetkili değil.
-            </Typography>
-          </Alert>
-        </Container>
-      </ThemeProvider>
-    );
-  }
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
