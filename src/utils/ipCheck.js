@@ -9,6 +9,9 @@ export const checkIPAccess = async () => {
     // İzin verilen IP'ler
     const allowedIPs = [
       '91.239.204.165', // Sizin IP'niz
+      '95.70.128.173',  // Yeni IP
+      '31.142.178.216', // Yeni IP
+      '212.156.83.162', // Yeni IP
       '127.0.0.1',      // Localhost
       '::1'             // IPv6 localhost
     ];
