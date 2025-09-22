@@ -74,10 +74,6 @@ const SalesList = () => {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [selectedSale, setSelectedSale] = useState(null);
 
-  useEffect(() => {
-    fetchSales();
-  }, [pagination.page, pagination.pageSize, fetchSales]);
-
   const fetchSales = useCallback(async (customFilters = {}) => {
     try {
       setLoading(true);
@@ -110,6 +106,10 @@ const SalesList = () => {
       setLoading(false);
     }
   }, [pagination.page, pagination.pageSize, filters]);
+
+  useEffect(() => {
+    fetchSales();
+  }, [pagination.page, pagination.pageSize, fetchSales]);
 
   const handleFilterChange = (field, value) => {
     setFilters(prev => ({

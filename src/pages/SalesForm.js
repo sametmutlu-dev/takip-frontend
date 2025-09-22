@@ -87,12 +87,6 @@ const SalesForm = () => {
     'Özet'
   ];
 
-  useEffect(() => {
-    if (isEdit) {
-      fetchSaleData();
-    }
-  }, [id, isEdit, fetchSaleData]);
-
   const fetchSaleData = useCallback(async () => {
     try {
       setLoading(true);
@@ -105,6 +99,12 @@ const SalesForm = () => {
       setLoading(false);
     }
   }, [id]);
+
+  useEffect(() => {
+    if (isEdit) {
+      fetchSaleData();
+    }
+  }, [id, isEdit, fetchSaleData]);
 
   const handleInputChange = (section, field, value) => {
     setFormData(prev => ({
